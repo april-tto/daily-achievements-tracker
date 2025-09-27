@@ -1,0 +1,23 @@
+{
+  "name": "daily-achievements-tracker",
+  "version": "1.0.0",
+  "description": "Modern Web Technologies course project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/april-tto/daily-achievements-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/april-tto/daily-achievements-tracker/issues"
+  },
+  "homepage": "https://github.com/april-tto/daily-achievements-tracker#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
