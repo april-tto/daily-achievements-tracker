@@ -1,20 +1,17 @@
 [
     {
-        "id": 1,
         "title": "Do lab6",
-        "text": "Complete lab5",
+        "description": "Complete lab5",
         "dueDate": "2025-02-09T20:18:49.000+00:00"
     },
         {
-        "id": 2,
         "title": "Do lab10",
-        "text": "Complete lab10",
+        "description": "Complete lab10",
         "dueDate": "2025-02-11T20:18:49.000+00:00"
     },
         {
-        "id": 3,
         "title": "Do assignment1",
-        "text": "Complete assignnment1",
+        "description": "Complete assignnment1",
         "dueDate": "2025-03-25T20:18:49.000+00:00"
     }
 ]

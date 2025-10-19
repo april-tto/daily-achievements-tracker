@@ -1,6 +1,5 @@
 [
 {
-  "id": "1",
   "quote": "Don't cry because it's over, smile because it happened.",
   "author": "Dr. Seuss",
   "rank": "common"
@@ -8,13 +7,11 @@
 {
   "quote": "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
   "author": "Albert Einstein",
-  "id": "2",
   "rank": "rare"
 },
 {
   "quote": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
   "author": "Mahatma Gandhi",
-  "id": "3",
   "rank": "super-rare"
 }
 ]

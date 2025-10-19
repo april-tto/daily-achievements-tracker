@@ -1,6 +1,6 @@
 [
     {
-        "user": "1",
+        "user_name": "qwerty",
         "firstName": "Mikayla",
         "lastName": "Fisher",
         "email": "febuary@gmail.com",
@@ -11,7 +11,7 @@
         "piggyBankId": [1]
     },
     {
-        "user": "2",
+        "user_name": "ytrewq",
         "firstName": "Deven",
         "lastName": "Fisher",
         "email": "april@gmail.com",

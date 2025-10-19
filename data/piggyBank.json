@@ -1,14 +1,12 @@
 [
     {
-        "id": 1,
         "name": "Buy McDonalds",
         "condition": "Go to the gym 10 times",
-        "totalCount": 10,
-        "completedCount": 0,
+        "total_count": 10,
+        "completed_count": 0,
         "image": "to be decided how to store it"
     },
     {
-        "id": 2,
         "name": "Go outside",
         "condition": "Complete 3 labs due",
         "totalCount": 3,

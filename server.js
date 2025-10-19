@@ -1,7 +1,9 @@
 const express = require("express");
-
+require('dotenv').config();
 const app = express()
 
+const connectDB = require("./shared/middlewares/connect-db.js");
+const connect = require('mongoose');
 
 //application-level middleware
 
@@ -17,6 +19,9 @@ app.use((err,req,res,next) => {
     console.log(err);
     res.status(404).send(`Error! ${req.method} ${req.path} was not found`)
 })
+
+//connect DB
+app.use(connectDB);
 
 
 //login page
