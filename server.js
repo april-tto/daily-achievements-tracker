@@ -2,6 +2,23 @@ const express = require("express");
 
 const app = express()
 
+
+//application-level middleware
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+app.use((err,req,res,next) => {
+    console.log(err);
+    res.status(500).send("Oops! Internal server error");
+})
+
+app.use((err,req,res,next) => {
+    console.log(err);
+    res.status(404).send(`Error! ${req.method} ${req.path} was not found`)
+})
+
+
 //login page
 app.get("/login", (req, res, next) => {
     res.send("logged in!")
