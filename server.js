@@ -5,6 +5,12 @@ const app = express()
 const connectDB = require("./shared/middlewares/connect-db.js");
 const connect = require('mongoose');
 
+//importing module routes
+
+const { taskRoute } = require("./modules/tasks/tasks-routes.js");
+const { userRoute } = require("./modules/users/users-routes.js");
+const { piggyBankRoute } = require("./modules/piggyBankTasks/piggyBankTasks-routes.js");
+
 //application-level middleware
 
 app.use(express.json());
@@ -22,6 +28,11 @@ app.use((err,req,res,next) => {
 
 //connect DB
 app.use(connectDB);
+
+//mounting routes
+app.use(taskRoute);
+app.use(userRoute);
+app.use(piggyBankRoute);
 
 //running server to test
 hostname = "127.0.0.1"

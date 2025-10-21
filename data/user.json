@@ -6,7 +6,9 @@
         "email": "febuary@gmail.com",
         "password": "123456",
         "birthday_date": "09-08-2001",
-        "collectedCookiesId": [2,3],
+        "collectedCookiesId": {
+            "$ref": "#./cookies.json"
+        },
         "taskId": [2],
         "piggyBankId": [1]
     },

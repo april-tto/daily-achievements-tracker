@@ -1,4 +1,4 @@
 //cookies
-app.get("/cookies", (req, res, next) => {
-        res.send("Browse through cookies")
-})
+/*
+I am not sure what requests for this entity should i make, given that user cannot affect it apart from getting it
+*/
