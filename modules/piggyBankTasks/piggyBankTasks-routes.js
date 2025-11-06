@@ -2,7 +2,7 @@ const { Router } = require("express");
 const createPiggyBankRules = require("./middlewares/create-piggyBank-rules");
 const updatePiggyBankRules = require("./middlewares/update-piggyBank-rules");
 
-const PiggyBankModel = require("./tasks-models");
+const PiggyBankModel = require("./piggyBankTasks-models");
 const piggyBankRoute = Router();
 
 //GET for retreival of Piggy Bank Tasks

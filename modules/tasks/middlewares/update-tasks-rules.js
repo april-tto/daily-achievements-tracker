@@ -4,11 +4,9 @@ const checkValidation = require("../../../shared/middlewares/check-validation.js
 const updateTaskRules = [
     body("title")
         .optional()
-        .withMessage("Title must not be empty")
         .isLength({ max: 100 }),
     body("description")
-        .optional()
-        .withMessage("Description must not be empty"),
+        .optional(),
     body("dueDate")
         .optional()
         .custom((value) => {

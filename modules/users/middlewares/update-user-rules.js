@@ -8,28 +8,23 @@ const updateUserRules= [
         .optional()
         .isString()
         .isLength({min: 5})
-        .not().isEmpty()
-        .withMessage("User name is required"),
+        .not().isEmpty(),
     body("first_name")
         .optional()
-        .isString()
-        .withMessage("Name must be a string"),
+        .isString(),
     body("last_name")
         .optional()
-        .isString()
-        .withMessage("Last name must be a string"),
+        .isString(),
     body("email")
         .optional()
         .isString()
         .not().isEmpty()
-        .withMessage("Email is required")
         .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
         .withMessage("Must be a valid email address"),
     body("password")
         .optional()
         .not().isEmpty()
-        .isLength({min: 6})
-        .withMessage("Password must be at least 6 characters long"),
+        .isLength({min: 6}),
     body("birthday_date")
         .custom((value) => {
             if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {

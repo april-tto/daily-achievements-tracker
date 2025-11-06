@@ -2,7 +2,7 @@ const { Router } = require("express");
 const createUserRules = require("./middlewares/create-user-rules");
 const updateUserRules = require("./middlewares/update-user-rules");
 
-const UserModel = require("./tasks-models");
+const UserModel = require("./users-models");
 const userRoute = Router();
 
 //GET for retreival of all users
