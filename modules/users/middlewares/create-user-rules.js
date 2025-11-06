@@ -1,4 +1,4 @@
-const { body } = require("express-validaotr");
+const { body } = require("express-validator");
 const checkValidation = require("../../../shared/middlewares/check-validation.js");
 
 //define validation array for user creation in POST request

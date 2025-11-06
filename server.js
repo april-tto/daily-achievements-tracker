@@ -11,6 +11,14 @@ const { taskRoute } = require("./modules/tasks/tasks-routes.js");
 const { userRoute } = require("./modules/users/users-routes.js");
 const { piggyBankRoute } = require("./modules/piggyBankTasks/piggyBankTasks-routes.js");
 
+//connect DB
+app.use(connectDB);
+
+//mounting routes
+app.use(taskRoute);
+app.use(userRoute);
+app.use(piggyBankRoute);
+
 //application-level middleware
 
 app.use(express.json());
@@ -25,14 +33,6 @@ app.use((err,req,res,next) => {
     console.log(err);
     res.status(404).send(`Error! ${req.method} ${req.path} was not found`)
 })
-
-//connect DB
-app.use(connectDB);
-
-//mounting routes
-app.use(taskRoute);
-app.use(userRoute);
-app.use(piggyBankRoute);
 
 //running server to test
 hostname = "127.0.0.1"
