@@ -10,6 +10,7 @@ const connect = require('mongoose');
 const { taskRoute } = require("./modules/tasks/tasks-routes.js");
 const { userRoute } = require("./modules/users/users-routes.js");
 const { piggyBankRoute } = require("./modules/piggyBankTasks/piggyBankTasks-routes.js");
+const { fortuneCookieRoute } = require("./modules/fortuneCookies/fortuneCookies-routes.js");
 
 //connect DB
 app.use(connectDB);
@@ -18,6 +19,7 @@ app.use(connectDB);
 app.use(taskRoute);
 app.use(userRoute);
 app.use(piggyBankRoute);
+app.use(fortuneCookieRoute);
 
 //application-level middleware
 

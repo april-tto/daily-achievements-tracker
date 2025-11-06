@@ -8,3 +8,4 @@ const FortuneCookieSchema = new mongoose.Schema({
 })
 
 const CookieModel = new mongoose.model("FortuneCookie", FortuneCookieSchema);
+module.exports = CookieModel;
