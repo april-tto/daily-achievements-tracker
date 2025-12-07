@@ -10,9 +10,11 @@ const createUserRules= [
         .not().isEmpty()
         .withMessage("User name is required"),
     body("first_name")
+        .optional()
         .isString()
         .withMessage("Name must be a string"),
     body("last_name")
+        .optional()
         .isString()
         .withMessage("Last name must be a string"),
     body("email")
@@ -30,7 +32,7 @@ const createUserRules= [
             if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
                 throw new Error("Date must be in YYYY-MM-DD format");
             };
-            const date = newDate(value)
+            const date = new Date(value)
             if (isNaN(date.getTime())){
                 throw new Error("Invalid date");
             }

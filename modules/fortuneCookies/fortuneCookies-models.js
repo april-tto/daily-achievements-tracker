@@ -7,5 +7,5 @@ const FortuneCookieSchema = new mongoose.Schema({
     rank: {type: String, required: true}
 })
 
-const CookieModel = new mongoose.model("FortuneCookie", FortuneCookieSchema);
+const CookieModel = new mongoose.model("Fortune_cookies", FortuneCookieSchema);
 module.exports = CookieModel;

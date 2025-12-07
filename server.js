@@ -5,8 +5,13 @@ const app = express()
 const connectDB = require("./shared/middlewares/connect-db.js");
 const connect = require('mongoose');
 
-//importing module routes
 
+//application-level middleware
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+//importing module routes
 const { taskRoute } = require("./modules/tasks/tasks-routes.js");
 const { userRoute } = require("./modules/users/users-routes.js");
 const { piggyBankRoute } = require("./modules/piggyBankTasks/piggyBankTasks-routes.js");
@@ -20,11 +25,6 @@ app.use(taskRoute);
 app.use(userRoute);
 app.use(piggyBankRoute);
 app.use(fortuneCookieRoute);
-
-//application-level middleware
-
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
 
 app.use((err,req,res,next) => {
     console.log(err);

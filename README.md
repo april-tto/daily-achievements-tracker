@@ -8,3 +8,7 @@ Phase 2:
 4. Added validation error check middleware (shared/middlewares/check-validation.js), which later implemented in middlewares in all modules
 5. Added Schema models for entities and connected the database
 6. Wrote routes logic and mounted them to the server
+
+Phase 4:
+1. Steamlined some routes (fetching a random cookie now automatically adds the fetched fortune cookie to user's collectedCookies, added a post route for fetching all fortune cookied based on userId)
+2. 

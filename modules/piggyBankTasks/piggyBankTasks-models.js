@@ -9,6 +9,6 @@ const PiggyBankTaskSchema = new mongoose.Schema({
     image: {data: Buffer, contentType: String}
 })
 
-const PiggyBankModel = new mongoose.model("PiggyBank", PiggyBankTaskSchema);
+const PiggyBankModel = new mongoose.model("Piggy_banks", PiggyBankTaskSchema);
 
 module.exports = PiggyBankModel;

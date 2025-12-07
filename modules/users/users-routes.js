@@ -25,12 +25,12 @@ userRoute.get("/user/:id", async (req,res,next) => {
 //POST to upload a new user
 
 userRoute.post("/user",createUserRules, async (req,res,next) => {
-    const { user_name, firstName, lastName, email, password, birthday_date } = req.body;
+    const { user_name, first_name, last_name, email, password, birthday_date } = req.body;
     const newUser = await UserModel.create(
         {
             user_name: user_name,
-            firtName: firstName,
-            lastName: lastName,
+            first_name: first_name,
+            last_name: last_name,
             email: email,
             password: password,
             birthday_date: birthday_date,
