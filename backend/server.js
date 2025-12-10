@@ -25,19 +25,20 @@ app.use(userRoute);
 app.use(piggyBankRoute);
 app.use(fortuneCookieRoute);
 
+app.use((req,res) => {
+    res.status(404).send(`Error! ${req.method} ${req.path} was not found`)
+})
+
 app.use((err,req,res,next) => {
     console.log(err);
     res.status(500).send("Oops! Internal server error");
 })
 
-app.use((err,req,res,next) => {
-    console.log(err);
-    res.status(404).send(`Error! ${req.method} ${req.path} was not found`)
-})
+
 
 //running server to test
-hostname = "127.0.0.1"
-port = 3000
+const hostname = "127.0.0.1"
+const port = 3000
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}`)
