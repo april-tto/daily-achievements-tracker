@@ -57,4 +57,4 @@ piggyBankRoute.delete("/piggybank/:id", async (req,res,next) => {
     }
 })
 
-module.exports = { piggyBankRoute };
+module.exports = piggyBankRoute;

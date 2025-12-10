@@ -42,8 +42,14 @@ userRoute.post("/user", createUserRules, async (req, res, next) => {
             birthday_date: birthday_date,
         }
     )
-    if (!newUser) res.status(500).send("Server was not found");
-    else res.send(newUser);
+    if (!newUser) return res.status(500).send("Server was not found");
+
+    //generating OTP
+    const OTP = randomPassword(5);
+    const otpmodel = await OTPModel.create({ email: email, otp: OTP });
+    const emailToUser = sendEmail(otpmodel, "Account Verification", "Your one-time-password");
+    if (emailToUser) { return res.send({ message: "Account was created and verification email was succeessfuly sent!" }) }
+    else { return res.send({ errorMessage: "Could not send verification email" }) };
 })
 
 //PUT for updating the user based in ID
@@ -86,21 +92,43 @@ userRoute.post("/user/login", async (req, res, next) => {
     const OTP = randomPassword(5);
     const otpmodel = await OTPModel.create({ email: email, otp: OTP });
     const emailToUser = sendEmail(otpmodel, "Account Verification", "Your one-time-password");
-    if (emailToUser) { return res.send({message: "Verification email was succeessfuly sent!"}) }
+    if (emailToUser) { return res.send({ message: "Verification email was succeessfuly sent!" }) }
     else { return res.send({ errorMessage: "Could not send verification email" }) };
 })
 
 //verify if provided OTP is correct
 userRoute.post("/user/verify-login", async (req, res, next) => {
     const { email, otp } = req.body;
-    
+
     const ifOTPfound = await OTPModel.findOne({ email: email, otp: String(otp) });
 
     if (!ifOTPfound) return res.send({ errorMessage: "Verification failed" });
     const foundUser = await UserModel.findOne({ email });
     const encodedToken = encodeToken({ id: foundUser._id, email: foundUser.email });
-    res.send({token: encodedToken});
+    res.cookie('access_token', encodedToken, { HttpOnly: true, secure: false, sameSite: 'lax', maxAge: 3600000 });
+    res.json({ success: true, token: encodedToken })
 })
 
 
-module.exports = { userRoute };
+//POST for LOGOUT
+userRoute.post("/user/logout", async (req, res, next) => {
+    console.log("Hit the route")
+    try {
+        const token = req.cookies.access_token;
+        if (!token) return res.status(401).send("No token provided");
+        
+        res.clearCookie("access_token", {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax'
+        });
+        res.send({ message: "Logged out successfully!"})
+    }
+    catch (err) {
+        console.log("Error signing out", err.message);
+        res.status(500).send("Server error");
+    }
+})
+
+
+module.exports = userRoute;

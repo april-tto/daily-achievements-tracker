@@ -10,7 +10,8 @@ const { decodeToken } = require('../../shared/jwt-utils');
 //POST for retreival of tasks based on token
 
 taskRoute.post("/tasks", async (req, res, next) => {
-    const { token } = req.body;
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).send("No token provided");
     const data = decodeToken(token);
     const user = await UserModel.findById(data.id);
     if (!user) return res.status(404).send("Could not find the user");
@@ -21,7 +22,6 @@ taskRoute.post("/tasks", async (req, res, next) => {
     for (const task of tasksId) {
         const added_task = await TaskModel.findById(task);
         if (added_task) tasks.push(added_task);
-        else res.status(404).send("Task was not found");
     }
 
     res.send(tasks);
@@ -37,9 +37,18 @@ taskRoute.get("/tasks/:id", async (req, res, next) => {
 })
 
 //POST to upload a new task and assign it to a user
-taskRoute.post("/tasks", createTaskRules, async (req, res, next) => {
+taskRoute.post("/upload-tasks", createTaskRules, async (req, res, next) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).send("No token provided");
     try {
-        const { id, title, description, dueDate } = req.body;
+
+        if (!token) return res.status(401).send("No token provided");
+
+        const data = decodeToken(token);
+        console.log("Decoded data:", data);
+        if (!data) return res.status(404).send("Incorrect token");
+
+        const { title, description, dueDate } = req.body;
         const newTask = await TaskModel.create(
             {
                 title: title,
@@ -50,14 +59,15 @@ taskRoute.post("/tasks", createTaskRules, async (req, res, next) => {
         if (!newTask) return res.status(500).send("Server was not found");
 
         const task = await TaskModel.findOne({ title: title, description: description, dueDate: dueDate })
+
         await UserModel.findByIdAndUpdate(
-            id,
+            data.id,
             { $addToSet: { taskId: task._id } }
         )
         res.send(task)
 
     } catch (err) {
-        console.log("Error addinf a task", err.message);
+        console.log("Error adding a task", err.message);
         res.status(500).send("Server error");
     }
 })
@@ -71,7 +81,7 @@ taskRoute.put("/tasks/:id", updateTaskRules, async (req, res, next) => {
 //DELETE for deleting the task
 taskRoute.delete("/tasks/:id", async (req, res, next) => {
     const id = req.params.id;
-    const task = TaskModel.findById(id);
+    const task = await TaskModel.findById(id);
     if (!task) res.status(404).send("Task was not found");
     else {
         const deletedTask = await TaskModel.findByIdAndDelete(id);
@@ -80,4 +90,4 @@ taskRoute.delete("/tasks/:id", async (req, res, next) => {
     }
 })
 
-module.exports = { taskRoute };
+module.exports = taskRoute;

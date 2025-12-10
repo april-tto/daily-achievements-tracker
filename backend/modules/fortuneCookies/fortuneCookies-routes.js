@@ -65,4 +65,4 @@ fortuneCookieRoute.post("/fortune-cookies", async (req, res, next) => {
     }
 })
 
-module.exports = { fortuneCookieRoute };
+module.exports = fortuneCookieRoute;

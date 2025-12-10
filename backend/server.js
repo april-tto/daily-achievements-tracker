@@ -1,20 +1,27 @@
-const express = require("express");
 require('dotenv').config();
-const app = express()
-
+const express = require("express");
+const cors = require('cors');
+const cookieParser = require("cookie-parser");
 const connectDB = require("./shared/middlewares/connect-db.js");
-const cors = require('cors')
-
-//application-level middleware
-app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
 
 //importing module routes
-const { taskRoute } = require("./modules/tasks/tasks-routes.js");
-const { userRoute } = require("./modules/users/users-routes.js");
-const { piggyBankRoute } = require("./modules/piggyBankTasks/piggyBankTasks-routes.js");
-const { fortuneCookieRoute } = require("./modules/fortuneCookies/fortuneCookies-routes.js");
+const taskRoute  = require("./modules/tasks/tasks-routes.js");
+const userRoute = require("./modules/users/users-routes.js");
+const piggyBankRoute  = require("./modules/piggyBankTasks/piggyBankTasks-routes.js");
+const fortuneCookieRoute = require("./modules/fortuneCookies/fortuneCookies-routes.js");
+
+const app = express()
+
+//application-level middleware
+app.use(cors({
+    origin: ["http://localhost:5173"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}))
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
 
 //connect DB
 app.use(connectDB);
@@ -33,8 +40,6 @@ app.use((err,req,res,next) => {
     console.log(err);
     res.status(500).send("Oops! Internal server error");
 })
-
-
 
 //running server to test
 const hostname = "127.0.0.1"
