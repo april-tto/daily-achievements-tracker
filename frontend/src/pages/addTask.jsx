@@ -16,7 +16,7 @@ export default function AddTask() {
             return;
         }
 
-        fetch("http://localhost:3000/upload-tasks", {
+        fetch(`${import.meta.env.VITE_API_URL}/upload-tasks`, {
             method: 'POST',
             credentials: "include",
             headers: { 'Content-Type': 'application/json' },

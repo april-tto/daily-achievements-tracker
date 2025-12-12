@@ -6,7 +6,7 @@ export default function Taskbox() {
     const [allTasks, setAllTasks] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/tasks', {
+        fetch(`${import.meta.env.VITE_API_URL}/tasks`, {
             method: 'POST',
             credentials: "include"})
             .then((res) => {

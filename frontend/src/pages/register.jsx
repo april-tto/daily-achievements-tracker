@@ -29,7 +29,7 @@ export default function Register({ onDataRequested }) {
             birthday_date: date,
         }
 
-        fetch("http://localhost:3000/user", {
+        fetch(`${import.meta.env.VITE_API_URL}/user`, {
             method: 'POST',
             credentials: "include",
             headers: { 'Content-Type': 'application/json' },

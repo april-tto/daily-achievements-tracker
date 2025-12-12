@@ -15,7 +15,7 @@ export default function Login({ onDataRequested }) {
             return;
         }
 
-        fetch("http://localhost:3000/user/login", {
+        fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
             method: 'POST',
             credentials: "include",
             headers: { 'Content-Type': 'application/json' },

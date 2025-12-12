@@ -10,7 +10,7 @@ export default function Verification({ email }) {
     const handleOTPverification = () => {
         setError(false);
 
-        fetch("http://localhost:3000/user/verify-login", {
+        fetch(`${import.meta.env.VITE_API_URL}/user/verify-login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',

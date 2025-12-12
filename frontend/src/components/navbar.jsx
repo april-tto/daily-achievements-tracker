@@ -7,7 +7,7 @@ export default function Navbar() {
 
     const handleLogout = () => {
         console.log("Starting the logout");
-        fetch("http://localhost:3000/user/logout", {
+        fetch(`${import.meta.env.VITE_API_URL}/user/logout`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
