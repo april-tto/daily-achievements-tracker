@@ -22,7 +22,8 @@
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "mongoose": "^8.19.1",
-    "react-router-dom": "^7.10.1"
+    "react-router-dom": "^7.10.1",
+    "cookie-parser": "^1.4.7"
   },
   "devDependencies": {
     "dotenv": "^17.2.3"
